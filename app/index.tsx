@@ -5,6 +5,7 @@ import {
   Text,
   TouchableWithoutFeedback,
   View,
+  Image,
 } from "react-native";
 
 type Joke = {
@@ -39,16 +40,14 @@ const Index: React.FC = () => {
   return (
     <TouchableWithoutFeedback onPress={handleRefresh}>
       <View style={styles.container}>
-        <ImageBackground
-          key={joke?.setup}
-          source={require("@/assets/images/background.png")}
-          style={styles.imageBackground}
-        >
-          <View style={styles.jokeContainer}>
-            <Text style={styles.jokeText}>{joke?.setup}</Text>
-            <Text style={styles.jokeText}>{joke?.punchline}</Text>
-          </View>
-        </ImageBackground>
+        <Image
+          style={styles.image}
+          source={require("@/assets/images/tap_to_change.png")}
+        />
+        <View style={styles.jokeContainer}>
+          <Text style={styles.setupText}>{joke?.setup}</Text>
+          <Text style={styles.punchlineText}>{joke?.punchline}</Text>
+        </View>
       </View>
     </TouchableWithoutFeedback>
   );
@@ -59,21 +58,30 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: "#1B1A55",
   },
-  imageBackground: {
-    width: "100%",
-    height: "100%",
-    justifyContent: "center",
-    alignItems: "center",
+  image: {
+    width: 300,
+    height: 100,
+    marginBottom: 20,
   },
   jokeContainer: {
     justifyContent: "center",
     alignItems: "center",
   },
-  jokeText: {
-    color: "#000",
+  setupText: {
+    color: "#ffffff",
+    fontWeight: "bold",
     textAlign: "center",
     marginVertical: 10,
+    fontSize: 24,
+  },
+  punchlineText: {
+    color: "#ffffff",
+    fontStyle: "italic",
+    textAlign: "center",
+    marginVertical: 10,
+    fontSize: 20,
   },
 });
 
